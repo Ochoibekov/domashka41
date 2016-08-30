@@ -1,0 +1,39 @@
+<div class="col-sm-4">
+  
+    <%if current_user == @user%>
+    <h1>New Post</h1>
+    <%= render 'form' %>
+    <% else %>
+
+    <% end %>  
+</div>
+<div class="col-sm-4">
+  <%if current_user == @user%>
+  <h1>My Posts</h1>
+  <% else %>
+  <h1>Posts</h1>
+  <%end %>
+<%= will_paginate @posts %>
+
+    <div class="row">
+      <div class="product-item">
+        <% @posts.each do |post| %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+          <%= image_tag post.image.url(:medium) %>
+              <h4><%= post.description %></h4>
+              <h6>By:<%= post.user.name %> <br> Date of post:<%= post.created_at %> </h6>
+              <%if current_user == @user%>
+              <%= link_to 'Delete', user_post_path(post.user,post),
+                      method: :delete,
+                      data: {confirm: 'Do you want to remove this product?'} %>
+                 <%end %>  
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+</div>
+
+
+  

@@ -1,0 +1,19 @@
+<div class="col-md-12">
+	<div class='col-md-4'>
+
+	</div>
+	<div class='col-md-8'>
+		<% @posts.each do |post| %>
+		<div class="image-wrap">
+			<%= image_tag post.image.url(:medium) %>
+		</div>
+		<%= post.description %>
+		<%= post.user.name %>
+		<% end %>
+		
+	</div>
+
+
+
+
+</div>
