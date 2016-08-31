@@ -12,6 +12,9 @@ class PostsController < ApplicationController
     redirect_to(root_url) unless current_user?(@user)
     
   end
+  def show  
+  @post = Post.find(params[:id])
+  end 
   def my_post
     
     @user=User.find(params[:user_id])
@@ -29,6 +32,22 @@ class PostsController < ApplicationController
   		@post = Post.create(post_params)
   		redirect_to user_posts_path
 	end 
+	def destroy
+		@post=Post.find(params[:id])
+		@post.destroy
+		redirect_to :back	
+		
+	end
+	def edit
+		@post = Post.find(params[:id])
+		
+	end
+	def update
+		@post = Post.find(params[:id])
+		@post.update(post_params)
+		redirect_to root_url
+		
+	end
 
 	private
 

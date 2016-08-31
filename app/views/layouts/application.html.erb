@@ -8,33 +8,30 @@
 </head>
 <body>
 
-<nav class="navbar  navbar-inverse">
-  <div class="container">
+<nav class="navbar navbar-default">
+  <div class="navbar-container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
+      <button class="navbar-toggle collapsed" data-target="#bs-navbar-collapse-1" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle Navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to 'Shop', root_path, class: 'navbar-brand' %>
+      <div class="navbar-brand">
+        <%= link_to "Photogram", root_path %>
+      </div>
     </div>
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
 
-    <div class="collapse navbar-collapse" id="navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contacts</a></li>
-      </ul>
+
+
       <ul class="navbar-nav navbar-right">
         <% if user_signed_in? %>
           <p class="navbar-text">
             Hello, <%= link_to current_user.name, edit_user_registration_path(current_user), class: 'navbar-link' %>
           </p>
           <p class="navbar-text">
-            <%= link_to 'Create Post', new_user_post_path(current_user), class: 'navbar-link' %>
-          </p>
-          <p class="navbar-text">
-            <%= link_to 'My Post', user_my_post_path(current_user), class: 'navbar-link' %>
+            <%= link_to 'New Post', new_user_post_path(current_user), class: 'navbar-link' %>
           </p>
           
           <ul class="nav navbar-nav">
@@ -42,14 +39,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Edit profile', edit_user_registration_path(current_user) %></li>
-                <li><a href="#">View orders</a></li>
+                <li><%= link_to 'My posts',user_my_post_path(current_user) %> </a></li>
                 <li class="divider"></li>
                 <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
               </ul>
             </li>
           </ul>
         <% else %>
-          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-default navbar-btn' %>
+          <%= link_to 'Register', new_user_registration_path, class: 'btn btn-default navbar-btn' %>
           <%= link_to 'Log in', new_user_session_path, class: 'btn btn-default navbar-btn' %>
         <% end %>
       </ul>
@@ -57,6 +54,8 @@
   </div>
 </nav>
 
+
+      
 <%= yield %>
 
 
