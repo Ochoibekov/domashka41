@@ -1,8 +1,11 @@
-
+@import 'bootstrap/glyphicons';
 @import "bootstrap-sprockets";
 @import "bootstrap";
 .wrap_img{
     height: 200px;
+}
+.user-name {
+  color: #125688;
 }
 
 .image-wrap img{
@@ -64,6 +67,10 @@ body {
 .image {
   border-bottom: 1px solid #eeefef;
   border-top: 1px solid #eeefef;
+  width: 450px;
+}
+.image img {
+  width:100%;
 }
 
 .caption {
@@ -86,3 +93,13 @@ body {
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+
+
+
+
+
+
+
+
+
