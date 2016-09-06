@@ -4,9 +4,16 @@ Rails.application.routes.draw do
 
   devise_for :users,:path=>'accounts'
   root 'posts#index'
+  resources :relationships,only: [:create, :destroy]
   resources :users do
+    
+    member do
+      get :following, :followers
+    end
+
     get 'my_post' => 'posts#my_post', as: 'my_post'
     get 'show', to: 'profiles#show', as: :profile  
+
     resources :posts do
       resources :comments
       member do

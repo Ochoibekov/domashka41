@@ -8,7 +8,7 @@
 	          <section class="stats">
 	      		<%= render 'shared/stats' %>
 	    	  </section>
-	    	  <%= render 'users/follow_form' if user_signed_in? %>
+	    	  <%= render 'follow_form' if user_signed_in? %>
           <p class="round-image-50"><%= image_tag(post.user.avatar.url(:thumb)) %></p>
           <%if @user == current_user%>
           <%= link_to 'Edit profile', edit_user_registration_path(current_user) %>

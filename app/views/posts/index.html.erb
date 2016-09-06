@@ -5,7 +5,7 @@
     <div class="post-head">
     <%#if @user==user_signed_in? %>
       <div class="user-name">
-          <%= link_to post.user.name, user_profile_path(post.user.name) %>
+          <%= link_to post.user.name, user_path(post.user) %>
       </div>
       <%#end %>
     </div>
@@ -50,6 +50,9 @@
     </div>
     <div class="comment-like-form row">
     <%if user_signed_in? %>
+      <!-- <section class="stats"> 
+        <%#= render 'shared/stats'%>
+      </section> -->
       <div class="col-sm-1">
         
           <%= link_to '', like_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>

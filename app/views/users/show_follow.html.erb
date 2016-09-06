@@ -1,0 +1,29 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1><%= @user.name %></h1>
+      <div class="follow-avatar">
+        <%= link_to image_tag(@user.avatar.url(:thumb)), user_path(@user), class: 'image-responsive' %>
+      </div>
+      <span><b>Posts:</b> <%= @user.posts.count %></span>
+    </section>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+    <% @users.each do |user| %>
+    <div class="col-sm-3">
+      <ul class="users follow">
+        <li>
+        <%= link_to user.name, user_path(user) %>
+        <%= link_to image_tag(user.avatar.url(:thumb)), user_path(user), class: 'image-responsive' %>
+        </li>
+      </ul>
+    </div>
+        <% end %>
+    <% end %>
+  </div>
