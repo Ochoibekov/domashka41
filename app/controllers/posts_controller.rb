@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index]
+	before_action :authenticate_user!, except: [:index],
+	  only: [:show, :edit, :update, :destroy, :like]
   def index
     @posts = Post.paginate(:page => params[:page], :per_page => 10).order('id DESC') 
   end
@@ -38,6 +39,19 @@ class PostsController < ApplicationController
 		redirect_to :back	
 		
 	end
+	def like
+		
+		@post = Post.find(params[:id])
+
+		if @post.liked_by current_user
+
+	      respond_to do |format|
+	        format.html { redirect_to root_url }
+	        format.js
+	      end
+    	end	
+
+	end
 	def edit
 		@post = Post.find(params[:id])
 		
@@ -50,8 +64,12 @@ class PostsController < ApplicationController
 	end
 
 	private
+	
 
 	def post_params
 		params.require(:post).permit(:image, :description, :user_id)
+	end
+	def set_post  
+  		@post = Post.find(params[:post_id])
 	end
 end

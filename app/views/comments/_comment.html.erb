@@ -1,8 +1,11 @@
 
-          
+          <%if user_signed_in? %>
             <div class="user-name">
+            <p class="round-image-50">
+            <%= image_tag(current_user.avatar.url(:thumb)) %></p>
               <%= comment.user.name %>
             </div>
+            <%end %>
             <div class="comment-content">
               <%= comment.content %>
               <div class="text-right">

@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
+  get 'profiles/show'
+
   devise_for :users,:path=>'accounts'
   root 'posts#index'
   resources :users do
     get 'my_post' => 'posts#my_post', as: 'my_post'
+    get 'show', to: 'profiles#show', as: :profile  
     resources :posts do
       resources :comments
+      member do
+      get 'like'
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
