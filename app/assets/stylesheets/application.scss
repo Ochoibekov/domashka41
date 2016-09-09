@@ -51,13 +51,16 @@ body {
 
 .navbar-default {
   background-color: #fff;
-  .navbar-nav li a {
+  .navbar-text li a {
     color: #125688;
   }
 }
+li {
+  list-style: none;
+}
 
 .navbar-container {
-  max-width: 640px;
+  max-width: 800px!important;
   margin: 0 auto;
 }
 
@@ -293,13 +296,15 @@ body {
   margin-bottom: 7px;
 }
 .round-image-50 {
+    
+
     background-color: white;
     border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    height: 50px;
-    width: 50px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    height: 150px;
+    width: 150px;
     overflow: hidden;
     text-align: center;
     img { width: 100% }
@@ -329,15 +334,13 @@ body {
 .navbar-default {
   background-color: #fff;
   height: 54px;
-  .navbar-nav li a {
+  .navbar-text a {
+    max-width: 640px; 
     color: #125688;
   }
 }
 
-.navbar-container {
-  width: 640px;
-  margin: 0 auto;
-}
+
 
 .posts-wrapper {
   padding-top: 40px;

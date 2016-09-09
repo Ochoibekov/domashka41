@@ -1,35 +1,69 @@
-
 <%= will_paginate @posts %>
-
-
-
-
 <div class="posts-wrapper row">
-
+  <section class="stats">
+    <%= render 'shared/stats' %>
+    posts <%= @posts.size %>
+  </section>
   <% @posts.each do |post| %>
     <div class="post">
+
       <div class="post-head">
         <div class="name">
-          <h6><%= post.user.name %> <br></h6>
+          <h6><%= link_to post.user.name, user_path(post.user) %><br></h6>
         </div>
       </div>
+
       <div class="image center-block">
-      <%= image_tag post.image.url(:medium), class:'img-responsive' %>
-        
+        <%= image_tag post.image.url(:medium), class:'img-responsive' %>  
       </div>
+
       <p class="caption">
         <%= post.description %><br> 
       </p>
+
       <p>
         <%if current_user == @user%>
-              <%= link_to 'Edit',edit_user_post_path(post.user,post) %>
-              <%= link_to 'Delete', user_post_path(post.user,post),
-                      method: :delete,
-                      data: {confirm: 'Do you want to remove this product?'} %>
-                 <%end %> 
+          <%= link_to 'Edit',edit_user_post_path(post.user,post) %>
+          <%= link_to 'Delete', user_post_path(post.user,post),
+            method: :delete,
+            data: {confirm: 'Do you want to remove this product?'} %>
+        <%end %> 
       </p>
+
+      <div class="post-bottom">
+        <%= render 'posts/likes', post: post %>   
+      </div>
+
+      <div class="comments" id="comments_<%= post.id %>">
+        <% if post.comments %>
+
+          <div class="comment">
+            <%= render post.comments, post: post %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="comment-like-form row">
+        <%if user_signed_in? %>
+          <%if current_user.liked? post %>
+            <div class="col-sm-1">
+                <%= link_to '', unlike_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>
+            </div>
+          <%else %>
+            <div class="col-sm-1">
+                <%= link_to '', like_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>
+            </div>
+          <%end %>
+        <%end %> 
+        <div class="comment-form col-sm-11">
+          <%= form_for([post.user,post, post.comments.build], remote: true) do |f| %>
+            <%= f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{post.id}"%>
+            <% end %>
+        </div> 
+      </div>
     </div>
   <% end %>
+</div>
 
 
 

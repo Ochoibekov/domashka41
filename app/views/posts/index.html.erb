@@ -33,7 +33,7 @@
     <div class="image center-block">
       <%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), user_post_path(post.user,post) %>
     </div>
-    <div class="post-bottom ">
+    <div class="post-bottom">
       
         <%= render 'posts/likes', post: post %>
       
@@ -50,14 +50,15 @@
     </div>
     <div class="comment-like-form row">
     <%if user_signed_in? %>
-      <!-- <section class="stats"> 
-        <%#= render 'shared/stats'%>
-      </section> -->
+    <%if current_user.liked? post %>
       <div class="col-sm-1">
-        
-          <%= link_to '', like_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>
-        
+          <%= link_to '', unlike_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>
       </div>
+      <%else %>
+      <div class="col-sm-1">
+          <%= link_to '', like_user_post_path(post.user.id,post.id), method: :get, remote: true,class:"glyphicon #{liked_post post}",id: "like_#{post.id}"%>
+      </div>
+      <%end %>
       <%end %>
       
       <div class="comment-form col-sm-11">

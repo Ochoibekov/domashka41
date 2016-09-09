@@ -2,14 +2,14 @@
           <%if user_signed_in? %>
             <div class="user-name">
             <p class="round-image-50">
-            <%= image_tag(current_user.avatar.url(:thumb)) %></p>
-              <%= comment.user.name %>
+            <%= image_tag(comment.user.avatar.url(:thumb)) %></p>
+              <%= link_to comment.user.name, user_path(comment.user) %>
             </div>
             <%end %>
             <div class="comment-content">
               <%= comment.content %>
               <div class="text-right">
-                  <% if comment.user == current_user %>
+                  <% if current_user== comment.user || post.user==current_user %>
                     <%= link_to user_post_comment_path(post.user,post, comment), method: :delete, data: { confirm: "Are you sure?" } ,remote: true do %>
                       <span class="glyphicon glyphicon-remove delete-comment"></span>
                     <% end %>

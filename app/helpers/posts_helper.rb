@@ -10,10 +10,12 @@ module PostsHelper
   end
   def list_likers(votes)
     user_names = []
+
     unless votes.blank?
       votes.voters.each do |voter|
+
         user_names.push(link_to voter.name,
-                                root_path,
+                                user_path(voter),
                                 class: 'user-name')
       end
       user_names.to_sentence.html_safe + like_plural(votes)
