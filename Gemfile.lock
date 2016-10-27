@@ -224,6 +224,7 @@ DEPENDENCIES
   capistrano-rails-console
   capistrano-rvm
   capistrano3-puma
+  puma
   coffee-rails (~> 4.1.0)
   devise
   faker
