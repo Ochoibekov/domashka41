@@ -224,13 +224,13 @@ DEPENDENCIES
   capistrano-rails-console
   capistrano-rvm
   capistrano3-puma
-  puma
   coffee-rails (~> 4.1.0)
   devise
   faker
   jbuilder (~> 2.0)
   jquery-rails
   paperclip (~> 5.0.0)
+  puma
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -242,4 +242,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.0)
 
 BUNDLED WITH
-   1.13.1
+   1.13.6
