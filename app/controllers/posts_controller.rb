@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-	before_action :authenticate_user!, except: [:index],
-	  only: [:show, :edit, :update, :destroy, :like]
+	before_action :authenticate_user!, except: [:index]
   def index
     @posts = Post.paginate(:page => params[:page], :per_page => 10).order('id DESC') 
   end
@@ -39,18 +38,23 @@ class PostsController < ApplicationController
 		redirect_to :back	
 		
 	end
-	def like
-		
+	def like	
 		@post = Post.find(params[:id])
-
 		if @post.liked_by current_user
-
 	      respond_to do |format|
-	        format.html { redirect_to root_url }
-	        format.js
+	        format.html { redirect_to :back }
+	        format.js {}
 	      end
     	end	
-
+	end
+	def unlike	
+		@post = Post.find(params[:id]) 
+		if @post.unliked_by current_user
+	      respond_to do |format|
+	        format.html { redirect_to :back }
+	        format.js {}
+	      end
+    	end	
 	end
 	def edit
 		@post = Post.find(params[:id])
